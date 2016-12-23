@@ -7,6 +7,30 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>Hello : ${name}</h1>
+   
+   <!--  if user logged in these links are not display-->
+   
+   <c:if test="${ empty successMsg}">
+   <a href="login">Login</a><br>
+<a href="registration">Register</a>
+   </c:if>
+
+<hr>
+${successMsg}
+${errorMSG }
+
+
+<c:if test="${showloginpage}">
+<jsp:include page="login.jsp"></jsp:include>
+</c:if>
+<c:if test="${not empty errorMSG}">
+<jsp:include page="login.jsp"></jsp:include>
+</c:if>
+
+
+<c:if test="${showregistionpage}">
+<jsp:include page="registration.jsp"></jsp:include></c:if>
 
 </body>
 </html>
