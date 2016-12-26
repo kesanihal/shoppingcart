@@ -7,6 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1 >Registration Page>>>>>>>>! ${msg }</h1>
 
+<form action="">
+Mail ID:<input type="text" name="mailid"><br>
+Password:<input type="password" name="password"><br>
+
+Mobile:<input type="text" name="mobile"><br>
+Address:<input type="password" name="address"><br>
+<input type="submit"  value="register">
+<input type="reset" value="reset">
+
+</form>
+<script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="webjars/jquery/3.1.1/dist/jquery.min.js"></script>
 </body>
 </html>
