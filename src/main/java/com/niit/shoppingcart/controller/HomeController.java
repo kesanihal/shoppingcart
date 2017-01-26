@@ -1,65 +1,88 @@
 package com.niit.shoppingcart.controller;
 
-	import org.springframework.stereotype.Controller;
-    import org.springframework.ui.Model;
-    import org.springframework.web.bind.annotation.RequestMapping;
-    import org.springframework.web.bind.annotation.RequestParam;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.niit.shoppingcart.dao.UserDAO;
-import com.niit.shoppingcart.daoimpl.UserDAOImpl;
+import com.niit.shoppingcartbackend.dao.CategoryDAO;
+import com.niit.shoppingcartbackend.dao.ProductDAO;
+import com.niit.shoppingcartbackend.dao.SupplierDAO;
+import com.niit.shoppingcartbackend.dao.UserDAO;
+import com.niit.shoppingcartbackend.model.Category;
+import com.niit.shoppingcartbackend.model.Product;
+import com.niit.shoppingcartbackend.model.Supplier;
+import com.niit.shoppingcartbackend.model.User;
 
+@Controller
+public class HomeController {
+Logger log=LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private UserDAO userDAO;
+	@Autowired
+	User user;
+	@Autowired
+	private CategoryDAO categoryDAO;
+	@Autowired
+	private Category category;
+	@Autowired
+	private SupplierDAO supplierDAO;
+	@Autowired
+	private Supplier supplier;
+	@Autowired
+	private Product product;
+	@Autowired
+	private ProductDAO productDAO;
 
-
-	 
-	@Controller
-	public class HomeController {
-	
-		@RequestMapping("/")
-		public ModelAndView homepage(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model)
-		{
-			System.out.println("method is executed");
-			ModelAndView mv=new ModelAndView("home");
-			mv.addObject("name", name);
-			return mv;
-		}
-		@RequestMapping("/login")
-		public  ModelAndView showLoginpage()
-		{
-			ModelAndView mv=new ModelAndView("home");
-			mv.addObject("msg","click login page");
-			mv.addObject("showloginpage", "true");
-			return mv;
-		}
-		@RequestMapping("/registration")
-		public ModelAndView showRegisterpage()
-		{
-			ModelAndView mv=new ModelAndView("home");
-			mv.addObject("msg","click registion page");
-			mv.addObject("showregistionpage", "true");
-			return mv;
-		}
-		@RequestMapping("/validate")
-		public  ModelAndView validate(@RequestParam("id") String id,@RequestParam("password") String pwd)
-		{
-			System.out.println("id:"+id);
-			System.out.println("password:"+pwd);
-			
-			ModelAndView mv=new ModelAndView("home");
-			
-			
-			UserDAO userDAO=new UserDAOImpl();
-			
-			if(userDAO.isValidCredentials(id, pwd)==true)
-			{
-				mv.addObject("successMsg", "You Loggin is successfully");
-			}
-			else {
-				mv.addObject("errorMSG", "You Loggin is faild>>>>>>!");
-			}
-			return mv;
-		}
-		
-		
-		
+	@RequestMapping("/")
+	public ModelAndView homepage(HttpSession session) {
+		log.debug("Starting of  the method home page.......H.......!");
+		System.out.println("method is executed");
+		session.setAttribute("Category", category);
+		session.setAttribute("Product", product);
+		session.setAttribute("supplier",supplier);
+		session.setAttribute("CategoryList", categoryDAO.list());
+	    session.setAttribute("SupplierList", supplierDAO.list());
+	    session.setAttribute("ProductList",productDAO.list());
+		ModelAndView mv = new ModelAndView("home");
+		log.debug("Starting of  the method home page.......H.......!");
+		return mv;
 	}
+
+	@RequestMapping("/login")
+	public ModelAndView showLoginpage() {
+		ModelAndView mv = new ModelAndView("home");
+		mv.addObject("user",user);
+		mv.addObject("UserClickedLogin", "true");
+		return mv;
+	}
+
+	@RequestMapping("/registration")
+	public ModelAndView showRegisterpage() {
+		ModelAndView mv = new ModelAndView("home");
+		mv.addObject("user",user);
+		mv.addObject("showregistionpage", "true");
+		return mv;
+	}
+	
+	  @RequestMapping(value ="ShowProduct/{id}" )
+	    public String ShowProduct(@PathVariable("id") int id,RedirectAttributes attributes,Model m) {
+	        m.addAttribute("UserClickedshowproduct", "true");
+	    	m.addAttribute("IndividualProduct", productDAO.getproduct(id));
+	    	return "ShowProduct";
+	    }
+	@RequestMapping(value="navproducts/{id}")
+	public String navproduct(Model m,@PathVariable("id") int id ){
+		m.addAttribute("Clickedcatproduct", "true");
+		m.addAttribute("navproducts", productDAO.navproduct(id));
+		return "catproducts";
+	}
+	
+}// home matheds
