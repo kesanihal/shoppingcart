@@ -1,0 +1,61 @@
+@CHARSET "ISO-8859-1";
+body{ padding:0px; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:12px; background:url(../images/login-bg.jpg) repeat left top; width:100%;}
+.loginWrapper { width: 240px; position: absolute; left: 50%; top: 50%;  text-align: center; margin-left: -10em; margin-top: -9em;}
+
+/* === Login hover buttons === */
+
+.logleft, .logright, .logback { background: url(../images/login-controls.png) no-repeat; height: 37px; width: 37px; position: absolute; top: 36px; display: block; opacity: 0; filter: alpha(opacity=0); }
+
+.logleft { left: 0px; background-position: -94px 0; } 
+.logright { right: 0px; background-position: -47px 0; } 
+.logback { left: 0; background-position: 0 0; }
+.logleft:hover { background-position: -94px -37px; } 
+.logright:hover { background-position: -47px -37px; } 
+.logback:hover { background-position: 0 0; }
+
+
+#login{ z-index:100; }
+#recover{ z-index:1; opacity:0; filter: alpha(opacity=0); -moz-transform:rotateY(180deg); -webkit-transform:rotateY(180deg); transform:rotateY(180deg); }
+.flipped #login{ opacity:0; filter: alpha(opacity=0); -moz-transform:rotateY(-180deg); -webkit-transform:rotateY(-180deg); transform:rotateY(-180deg); }
+.loginWrapper.flipped #recover{ opacity:1; filter: alpha(opacity=100); -moz-transform:rotateY(0deg); -webkit-transform:rotateY(0deg); transform:rotateY(0deg); }
+.loginWrapper form { width:100%; height:100%; position:absolute; top:0; left:0;
+
+/* Enabling 3d space for the transforms */
+-moz-transform-style: preserve-3d;
+-webkit-transform-style: preserve-3d;
+transform-style: preserve-3d;
+
+/* When the forms are flipped, they will be hidden */
+-moz-backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+
+/* Enabling a smooth animated transition */
+-moz-transition:0.8s;
+-webkit-transition:0.8s;
+transition:0.8s;
+
+/* Configure a keyframe animation for Firefox */
+-moz-animation: pulse 2s infinite;
+
+/* Configure it for Chrome and Safari */
+-webkit-animation: pulse 2s infinite;
+}
+
+.loginPic { text-align: center; display: block; position: relative; overflow: hidden; }
+.loginPic{ text-align:center; display:block; position:relative; overflow:hidden;}
+.loginPic span { display: block; color: #5f5f5f; font-size: 14px; margin-top: 10px; font-weight: bold; text-shadow: 0 1px 1px #ffffff; }
+
+.loginWrapper form { display: block; margin: 0 auto;}
+.loginWrapper a { display: inline-block; }
+.logright{ cursor:pointer;}
+.loginWrapper input[type=text], .loginWrapper input[type=password] { font-size: 11px; color: #858585; box-shadow: 0 0 0px 2px #ebebeb; -webkit-box-shadow: 0 0 0px 2px #ebebeb; -moz-box-shadow: 0 0 0px 2px #ebebeb; padding: 7px 27px 7px 9px; border: 1px solid #d7d7d7; width: 198px; display: inline-block; margin-top: 15px; }
+.loginUsername { background: #fbfbfb url(../images/loginUsername.png) no-repeat 213px 7px; }
+.loginPassword { background: #fbfbfb url(../images/loginLock.png) no-repeat 214px 7px; }
+.loginEmail { background: #fbfbfb url(../images/loginEmail.png) no-repeat 213px 7px; }
+
+.logControl { margin-top: 15px; overflow:hidden; }
+.logControl #button { float: left; margin-top: 7px; width:16px; }
+.logControl #text{ float:left; overflow:hidden; padding:8px 0 0 6px;}
+
+

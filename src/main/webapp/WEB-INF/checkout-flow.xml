@@ -4,9 +4,9 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
       https://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
       
-      <var name="cart" class="com.niit.scartbackend.modelCart" />
+      <var name="cart" class="com.niit.model.Cart" />
       
-      <view-state id="paymentpage" view="views/Payment.jsp" model="cart">
+      <view-state id="paymentpage" view="views/payment.jsp" model="cart">
       <transition on="method" to="payment"></transition>
       </view-state>
       

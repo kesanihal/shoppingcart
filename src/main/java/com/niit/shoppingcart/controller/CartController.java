@@ -1,4 +1,4 @@
-/*package com.niit.shoppingcart.controller;
+package com.niit.shoppingcart.controller;
 
 
 import javax.servlet.http.HttpSession;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingcartbackend.dao.CartDAO;
+import com.niit.shoppingcartbackend.dao.CategoryDAO;
 import com.niit.shoppingcartbackend.dao.ProductDAO;
 import com.niit.shoppingcartbackend.model.Cart;
 import com.niit.shoppingcartbackend.model.Product;
@@ -24,23 +25,26 @@ import com.niit.shoppingcartbackend.model.Product;
 public class CartController {
 	@Autowired
 	 private CartDAO cartDAO;
+	
+	@Autowired
+	 private CategoryDAO categoryDAO;
 	 
 	 @Autowired
 	 private ProductDAO productDAO;
 	 
 	 public static final Logger log=LoggerFactory.getLogger(CartController.class);
-	 
+	/* 
 	 @RequestMapping(value="/Cart")
 	 public ModelAndView Cartpage(HttpSession session)
 	 {
-	  ModelAndView  mv=new ModelAndView("header");
+	  ModelAndView  mv=new ModelAndView("home");
 	  mv.addObject("UserClickedCart","true");
 	  return mv;
 	  
-	 }
+	 }*/
 	 int q;
 	 
-	 @RequestMapping(value={"addtocart/{id}","navproduct/addtocart/{id}"})
+	 @RequestMapping(value={"addtocart/{id}","navproducts/addtocart/{id}"})
 	 public String addTOCart(@ModelAttribute("cart")Cart cart,BindingResult result,@PathVariable("id") int productid){
 	 
 	  log.info("Cart operation start");
@@ -67,7 +71,7 @@ public class CartController {
 	   p=q*p;
 	 cart1.setQuantity(q);
 	 cart1.setPrice(p);
-	cartDAO.update(cart);
+	cartDAO.update(cart1);
 	System.out.println("opeartion over");
 
 	log.info("cart operaiton over");
@@ -100,7 +104,7 @@ public class CartController {
 		}
 	 
 	 
-	 @RequestMapping("Cart1")
+	 /*@RequestMapping("Cart1")
 		public String viewCart(Model model, HttpSession session) {
 			int userId = (Integer) session.getAttribute("userId");
 			model.addAttribute("CartList", cartDAO.get(userId));
@@ -112,14 +116,14 @@ public class CartController {
 			model.addAttribute("IfViewCartClicked", "true");
 			model.addAttribute("HideOthers", "true");
 			return "Cart1";
-		}
+		}*/
 	 
 	 
 	 
 
 	 @RequestMapping(value="/Cart1")
 	 public ModelAndView cartpage(@ModelAttribute("cart") Cart cart,HttpSession session){
-	  ModelAndView mv= new ModelAndView("Cart1");
+	  ModelAndView mv= new ModelAndView("cartpage");
 	  if(cartDAO.list()==null){
 	   mv.addObject("emptycart","Sorry your shopping cart is empty");
 	  }else{
@@ -140,6 +144,6 @@ public class CartController {
 	 @RequestMapping("pay")
 	 public String payment(HttpSession session) {
 	  cartDAO.pay((Integer) session.getAttribute("userid"));
-	  return "header";
+	  return "home";
 	 }
-}*/
+}

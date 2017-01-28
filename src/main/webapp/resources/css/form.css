@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+form{ padding:0px; margin:0px; }
+
+
+.blueBG{ background:url(../images/blue-bg-left-cor.gif) no-repeat left top; padding:0px 0 0 10px; color:#fff; font-size:11px; font-weight:bold; border:0px;}
+.blueRIGHTCOR{ background:url(../images/blue-bg-right-cor.gif) no-repeat right top; padding:9px 12px 9px 2px; color:#fff; font-size:11px; font-weight:bold; border:0px; text-shadow:-1px -1px 0px #1572af; cursor:pointer;}
+
+#button input{ visibility:hidden;}
+#button a { display: block; position: relative; text-decoration: none; width: 16px; height: 16px; border: 0; background:url(../images/checkboxes.png) no-repeat left top; cursor:pointer;}
+#button a:before { width: 16px; height: 16px; display: block; z-index: -2; position: absolute; left: -5px; top: -2px;}
+#button a:active { top: 0px;}
+#button a.on { top: 0px; background:url(../images/checkboxes.png) no-repeat left -17px;}
+#button a:active:before, #checkbox a.on:before { top: 0px;}
+
+
+
+

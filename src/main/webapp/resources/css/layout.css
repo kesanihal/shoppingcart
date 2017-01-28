@@ -1,0 +1,8 @@
+@CHARSET "ISO-8859-1";
+body{ padding:0px; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:12px; }
+
+img{ border:0px;}
+
+#header{ background:#111112; overflow:hidden; height:52px; border-bottom:1px solid #000000; }
+#header #shade{ background:url(../images/header-shade.png) repeat left top; overflow:hidden; height:52px; }
+#header #mainLOGO{ overflow:hidden; clear:both; padding:0 0 0 22px;}

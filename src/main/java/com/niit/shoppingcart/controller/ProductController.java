@@ -4,11 +4,12 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.enterprise.inject.Model;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +43,7 @@ public class ProductController {
 
 	@RequestMapping(value="editproduct")
 	public String editproduct(@ModelAttribute("product") Product product,HttpServletRequest request,Model m){
-		productDAO.saveorupdate(product);
+		productDAO.saveOrUpdate(product);
 		MultipartFile file=product.getImage();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
         path = Paths.get(rootDirectory + "\\resources\\images\\"+product.getId()+".jpg");

@@ -42,9 +42,9 @@ ${message}
 ${msg}
 ${msg1 }
 <h1>WelCome Admin </h1>
-<c:if test="${showSupplierpage}">
+<%-- <c:if test="${showSupplierpage}">
 		<jsp:include page="supplier.jsp"></jsp:include></c:if>
-
+ --%>
 <c:choose>
 <c:when test="${showSupplierpage}">
 <c:import url="/WEB-INF/views/supplier.jsp"></c:import>

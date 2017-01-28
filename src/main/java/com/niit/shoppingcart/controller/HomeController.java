@@ -76,7 +76,7 @@ Logger log=LoggerFactory.getLogger(HomeController.class);
 	    public String ShowProduct(@PathVariable("id") int id,RedirectAttributes attributes,Model m) {
 	        m.addAttribute("UserClickedshowproduct", "true");
 	    	m.addAttribute("IndividualProduct", productDAO.getproduct(id));
-	    	return "ShowProduct";
+	    	return "showproducts";
 	    }
 	@RequestMapping(value="navproducts/{id}")
 	public String navproduct(Model m,@PathVariable("id") int id ){

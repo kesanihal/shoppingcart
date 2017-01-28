@@ -68,10 +68,10 @@ public class AdminController {
 		     else 
 		     {
 		    	 session.setAttribute("Administrator", "true");
-			 return "/Admin";
+			 return "/admin";
 		     }
 	}
-		return "/Home";
+		return "/home";
 	
 	}
 	@RequestMapping(value="/loginError")
