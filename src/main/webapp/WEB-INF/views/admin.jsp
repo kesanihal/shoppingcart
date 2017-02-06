@@ -15,6 +15,30 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <title>Admin Page</title>
+<style>
+body{
+background-color:  #DC143C;
+}
+ul {
+    list-style-type: 	#FF00FF;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #111;
+</style>
 <body >
 </head>
 <body ng-app="myApp">
